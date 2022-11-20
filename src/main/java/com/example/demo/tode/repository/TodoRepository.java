@@ -1,6 +1,7 @@
 package com.example.demo.tode.repository;
 
 
+import com.example.demo.tode.dto.FindAllDTO;
 import com.example.demo.tode.entity.ToDo;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface TodoRepository {
 
     //할일 삭제 기능
     boolean remove(long id);
+
+
 }

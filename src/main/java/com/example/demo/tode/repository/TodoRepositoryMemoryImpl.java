@@ -1,6 +1,7 @@
 package com.example.demo.tode.repository;
 
 import com.example.demo.tode.entity.ToDo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@Slf4j
 //역할 : 할일 데이털르 메모리에 CRUD하는 역할
 public class TodoRepositoryMemoryImpl implements TodoRepository{
 
@@ -22,17 +24,19 @@ public class TodoRepositoryMemoryImpl implements TodoRepository{
 
     static {
         //정적 초기화
-        toDoMap.put(1L,new ToDo(1L,"김철수","저녁밥 만들기",false)) ;
-        toDoMap.put(2L,new ToDo(2L,"박영희","산책",false)) ;
-        toDoMap.put(3L,new ToDo(3L,"김철수","노래",true)) ;
+        toDoMap.put(1L,new ToDo("저녁밥 만들기")) ;
+        toDoMap.put(2L,new ToDo("산책")) ;
+        toDoMap.put(3L,new ToDo("노래")) ;
 
     }
 
     @Override
     public boolean save(ToDo todo) {
-        if (todo != null) return false;
+        log.info("todo: {}", todo);
+        if (todo == null) return false;
 
         toDoMap.put(todo.getId(), todo);
+        log.info("save success - {}", todo.getId());
         return true;
     }
 
